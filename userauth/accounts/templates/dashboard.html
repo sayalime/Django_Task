@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+      body {
+        background-color: #f2f2f2;
+      }
+      .card {
+        margin-top: 50px;
+      }
+      .card-header {
+        font-weight: bold;
+        color: #555;
+      }
+      .card-body {
+        font-size: 18px;
+      }
+      .profile-pic {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">User Details</div>
+            <div class="card-body">
+              <div class="text-center">
+                
+                <img class="profile-pic" src="/media/{{ profile_picture }}" alt="Profile Picture">
+              </div>
+              <p><strong>Name:</strong> {{ first_name }} {{ last_name }}</p>
+              <p><strong>Username:</strong> {{ username }}</p>
+              <p><strong>Email:</strong> {{ email }}</p>
+              <p><strong>Address:</strong> {{ address_line1 }}, {{ city }}, {{ state }} {{ pincode }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

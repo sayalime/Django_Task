@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+      .account-type {
+        text-align: center;
+        font-size: 30px;
+        color: black;
+      }
+      .form-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        width: 500px;
+        margin: 0 auto;
+      }
+      .form-title {
+        text-align: center;
+        font-size: 50px;
+        margin-bottom: 10px;
+      }
+      .form-label {
+        font-size: 25px;
+        color: black;
+      }
+      .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 1px;
+        font-size: 25px;
+      }
+      .submit-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 1px;
+        cursor: pointer;
+        font-size: 25px;
+        margin-top: 30px;
+        width: 100%;
+      }
+      .submit-btn:hover {
+        background-color: #3e8e41;
+        color:red;
+      }
+      #signup-link {
+        
+        color: #333;
+        padding: 10px;
+        border-radius: 3px;
+        border: #ccc;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    #message {
+        color: #333;
+        padding: 10px;
+        border-radius: 3px;
+        border: #ccc;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      img {
+        width: 80%;
+        height: 90px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        object-fit: cover;
+        filter: grayscale(50%);
+      }
+      
+       
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="form-title">Sign In-{{nameee}}</h4>
+        </div>
+      </div>
+      {% comment %} <div class="row">
+        <div class="col-lg-12">
+            <div class="account-type btn-group-toggle" data-toggle="buttons" required>
+                <h3>What type of user are you?</h3>
+                <label class="btn btn-secondary" ><h6>Doctor</h6>
+                  <input type="radio" name="account-type" value="doctor"> 
+                  {% load static %}
+                  <img src="{% static 'userauth/doctor-image.jpg' %}" alt="Doctor Image">
+                </label>
+                <label class="btn btn-secondary"> <h6>Patient</h6>
+                  <input type="radio" name="account-type" value="patient"> 
+                  {% load static %}
+                  <img  src="{% static 'userauth/patient-image.jpg' %}" alt="Patient Image">
+                </label>
+              </div>
+        </div>
+      </div> {% endcomment %}
+      <div class="row">
+        <div class="col-lg-12">
+          <div id="message"></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <form class="form-container" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="email" class="form-label">Email:</label>
+              <input type="text" class="form-control form-input" name="email">
+            </div>
+            <div class="form-group">
+              <label for="password" class="form-label">Password:</label>
+              <input type="password" class="form-control form-input" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">Log in</button>
+          </form>
+      <div id="signup-link">No account? <a href="/signup/{{id}}">Sign up here</a></div>
+    </div>
+    <script>
+      const accountTypeRadios = document.querySelectorAll('input[name="account-type"]');
+      const messageDiv = document.getElementById('message');
+
+      for (let i = 0; i < accountTypeRadios.length; i++) {
+        accountTypeRadios[i].addEventListener('change', function() {
+          if (this.value === 'doctor') {
+            messageDiv.textContent = 'Hello Doctor, please fill out your details';
+          } else if (this.value === 'patient') {
+            messageDiv.textContent = 'Hello Patient, please fill out your details.';
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
